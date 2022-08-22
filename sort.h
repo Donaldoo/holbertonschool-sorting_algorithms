@@ -31,6 +31,7 @@ void print_list(const listint_t *list);
 
 /* prototypes of functions used in this project */
 
+void swap(int *a, int *b);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
