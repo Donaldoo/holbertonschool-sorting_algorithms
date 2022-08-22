@@ -1,5 +1,19 @@
 #include "sort.h"
 
+/**
+ * swap - swaps 2 integers
+ * @a: int
+ * @b: int
+ */
+void swap(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
 /* selection_sort - sort of an array of intigers
  * @array: Array to be sorted
  * @size: size of the array
@@ -25,7 +39,7 @@ void selection_sort(int *array, size_t size)
 			/*swap = array[i];
 			array[i] = array[min];
 			array[min] = swap;*/
-			print_array(array,size);
+			print_array(array, size);
 		}
 	}
 }
