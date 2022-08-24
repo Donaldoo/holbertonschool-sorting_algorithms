@@ -6,8 +6,8 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current; /* traverses list */
-	listint_t *temp; /* holds temp values */
+	listint_t *current = NULL;
+	listint_t *temp = NULL;
 
 	current = *list;
 	current = current->next;
