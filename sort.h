@@ -37,5 +37,8 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void merge_sorted_arrays(int *array, size_t left, size_t mid, size_t right);
+void merge_sort_recursion(int *array, size_t left, size_t right);
 
 #endif
