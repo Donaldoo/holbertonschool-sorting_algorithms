@@ -6,55 +6,38 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *front == NULL;
-	listint_t *back == NULL;
+	listint_t *current; /* traverses list */
+	listint_t *temp; /* holds temp values */
 
-	front = *list;
-	front = front->next;
+	current = *list;
+	current = current->next;
+
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
-<<<<<<< HEAD
-=======
 
-	front = (*list)->next;
->>>>>>> 2808655c97da3d129638b39366409b6620870c30
-	while (front != NULL)
+	while (current != NULL)
 	{
-		while (front->prev != NULL && front->n < front->prev->n)
+		while (current->prev != NULL && current->n < current->prev->n)
 		{
-			back = front;
+			temp = current;
+			if (current->next != NULL)
+				current->next->prev = temp->prev;
+			current->prev->next = temp->next;
 
-			if (front->next != NULL)
-<<<<<<< HEAD
-				front->next->prev = back->prev;
-			front->prev->next = back->next;
+			current = current->prev;
+			temp->prev = current->prev;
+			temp->next = current;
 
-			front = front->prev;
-			back->prev = front->prev;
-			back->next = front;
-=======
-				front->next->prev = front->prev;
-			front->next = front->next;
-			front->prev = front->next->prev;
-			front->next->prev = front;
->>>>>>> 2808655c97da3d129638b39366409b6620870c30
+			if (current->prev != NULL)
+				current->prev->next = temp;
+			current->prev = temp;
 
-			if (front->prev != NULL)
-				front->prev->next = back;
-			front->prev = back;
+			if (temp->prev == NULL)
+				*list = temp;
 
-<<<<<<< HEAD
-			if (back->prev == NULL)
-				*list = back;
-=======
-			if (front->prev == NULL)
-				*list = front;
-			else
-				front->prev->next = front;
->>>>>>> 2808655c97da3d129638b39366409b6620870c30
 			print_list(*list);
-			front = front->prev;
+			current = current->prev;
 		}
-		front = front->next;
+		current = current->next;
 	}
 }
