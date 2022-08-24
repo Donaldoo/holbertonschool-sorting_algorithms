@@ -1,10 +1,8 @@
 #include "sort.h"
 
-/*
- *
- *
- *
- *
+/**
+ * insertion_sort_list - Sort double linked list using insertion sort algorithm
+ * @list: pointer to the list to be sorted
  */
 void insertion_sort_list(listint_t **list)
 {
