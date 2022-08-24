@@ -5,57 +5,55 @@
  *
  *
  */
-void swap(int *a, int *b)
+size_t partition(int *array, ssize_t low, ssize_t high, size_t size)
 {
-	int t;
+	ssize_t i, j;
+	int swap, pivot;
 
-	t = *a;
-	*a = *b;
-	*b = t;
-}
-/*
- *
- *
- *
- *
- */
-int partition(int *array, size_t size, int low, int high)
-{
-	int pivot, i, j;
-
-	pivot = array[high];
-	i = (low - 1);
+	pivot =  array[high];
+	i = low - 1;
 	for (j = low; j < high; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < pivot)
 		{
 			i++;
-			swap(&array[i], &array[j]);
-			print_array(array, size);
+			if (i != j)
+			{
+				swap = array[i];
+				array[i] = array[j];
+				array[j] = swap;
+				print_array(array, size);
+			}
 		}
 	}
-	swap(&array[i + 1], &array[high]);
+	if (array[high] < array[i + 1])
+	{
+		swap = array[i + 1];
+		array[i + 1] = array[high];
+		array[high] = swap;
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 /*
  *
  *
  *
+ *
  */
-void sort_recursion(int *array,size_t size, int low, int high)
+void compare_sort(int *array, ssize_t low, ssize_t high, size_t size)
 {
-	int pi;
+	ssize_t pivot;
 
 	if (low < high)
 	{
-		pi = partition(array, size, low, high);
-		sort_recursion(array, size, low, pi - 1);
-		sort_recursion(array, size, pi + 1, high);
+		pivot = partition(array, low, high, size);
+		compare_sort(array, low, pivot - 1, size);
+		compare_sort(array, pivot + 1, high, size);
 	}
 }
-
-/**
- * 
+/*
+ *
  *
  *
  */
@@ -63,6 +61,5 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-
-	sort_recursion(array, size, 0, size - 1);
+	compare_sort(array, 0, size - 1, size);
 }
