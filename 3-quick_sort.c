@@ -1,5 +1,5 @@
 #include "sort.h"
-/*
+/**
  * partition - Function that will find the partition as Lomuto scheme requires
  * @array: array to partition
  * @low: size to partition
@@ -37,8 +37,8 @@ size_t partition(int *array, ssize_t low, ssize_t high, size_t size)
 	}
 	return (i + 1);
 }
-/*
- * compare_sort - Function that will compare the numbers in the indexed positions
+/**
+ * compare_sort - Function that will compare the numbers in the indexed posit
  * @array: array to be compared and sorted
  * @low: index of element to be compared
  * @high: index of element to be compared
@@ -55,7 +55,7 @@ void compare_sort(int *array, ssize_t low, ssize_t high, size_t size)
 		compare_sort(array, pivot + 1, high, size);
 	}
 }
-/*
+/**
  * quick_sort - Function that will do quic sorting as per Lomuto scheme
  * @array: array that will be sorted
  * @size: size of the array that will be sorted
