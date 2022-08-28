@@ -1,78 +1,103 @@
 #include "sort.h"
 
 /**
- *
- *
- */
-void merge_sort(int *array, size_t size)
-{
-	int *tmp;
-
-	tmp = malloc(sizeof(int) * size);
-	if (tmp == NULL)
-		return;
-
-	if (array == NULL || size < 2)
-		return;
-
-	merge_sort_recursion(array, 0, size - 1, tmp);
-
-	free(tmp);
-}
-
-/**
- *
- *
- *
+ * merge_sort_recursion - splits and sorts array
+ * @array: array to be sorted
+ * @left: first index of the array
+ * @right: last index of the array
+ * @tmp: temporary array for sorting array
  */
 void merge_sort_recursion(int *array, size_t left, size_t right, int *tmp)
 {
 	size_t mid;
 
-	if (left < right)
-	{
-		mid = (right + left) / 2;
+	if (array == NULL || tmp == NULL || right <= (left + 1))
+		return;
+	
+	mid = (left + right) / 2;
 
-		merge_sort_recursion(array, left, mid, tmp);
-		merge_sort_recursion(array, mid + 1, right, tmp);
+	merge_sort_recursion(array, left, mid, tmp);
+	merge_sort_recursion(array, mid, right, tmp);
 
-		merge_sorted_arrays(array, left, mid, right, tmp);
-	}
+	merge_sorted_arrays(array, left, mid, right, tmp);
 }
 
 /**
- *
- *
+ * merge_sorted_array - merges sorted arrays
+ * @array: array
+ * @left: first index
+ * @mid: mid of the array
+ * @right: last index
+ * @tmp: temporary array
  */
-void merge_sorted_arrays(int *array, size_t left, size_t mid, size_t right, int *tmp)
+void merge_sorted_arrays(int *array, size_t low, size_t mid, size_t high, int *tmp)
 {
-	size_t i = 0;
-	size_t left_pos = left;
-	size_t right_pos = mid + 1;
+	size_t i;
+	size_t left;
+	size_t right;
 
-	printf("Merging..\n[left]: ");
-	print_array(array + left, mid + 1);
+	printf("Merging...\n");
+	printf("[left]: ");
+	print(array, low, mid);
 
 	printf("[right]: ");
-	print_array(array + mid + 1, right - mid);
+	print(array, mid, high);
 
-	for (i = left; left_pos <= mid && right_pos <= right; i++)
+	for (left = low; left < high; ++left)
+		tmp[left] = array[left];
+
+	left = low;
+	right = mid;
+
+	for (i = low; i < high; ++i)
 	{
-		if (array[left_pos] <= array[right_pos])
-			tmp[i] = array[left_pos++];
+		if (left >= mid)
+			array[i] = tmp[right++];
+		else if (right >= high)
+			array[i] = tmp[left++];
+		else if (tmp[left] <= tmp[right])
+			array[i] = tmp[left++];
 		else
-			tmp[i] = array[right_pos++];
+			array[i] = tmp[right++];
 	}
 
-	while (left_pos <= mid)
-		tmp[i++] = array[left_pos++];
-
-	while (right_pos <= right)
-		tmp[i++] = array[right_pos++];
-
-	for (i = 0; i <= right; i++)
-		array[i] = tmp[i];
-
 	printf("[Done]: ");
-	print_array(tmp, i);
+	print(array, low, high);
+}
+
+/**
+ * print - print part of array
+ * @array: array
+ * @low: first index
+ * @high: last index
+ */
+void print(int *array, size_t low, size_t high)
+{
+	size_t i;
+
+	i = low;
+	while (array && i < (high - 1))
+		printf("%d, ", array[i++]);
+	printf("%d\n", array[i]);
+}
+
+/**
+ * merge_sort - merge sort algorithm
+ * @array: array to be sorted
+ * @size: size of the array
+ */
+void merge_sort(int *array, size_t size)
+{
+	int *tmp;
+	
+	if (array == NULL || size < 2)
+		return;
+	
+	tmp = malloc(sizeof(int) * size);
+	if (tmp == NULL)
+		return;
+
+	merge_sort_recursion(array, 0, size, tmp);
+
+	free(tmp);
 }
