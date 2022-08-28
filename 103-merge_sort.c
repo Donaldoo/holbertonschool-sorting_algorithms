@@ -23,11 +23,11 @@ void merge_sort_recursion(int *array, size_t left, size_t right, int *tmp)
 }
 
 /**
- * merge_sorted_array - merges sorted arrays
+ * merge_sorted_a - merges sorted arrays
  * @array: array
- * @left: first index
+ * @low: first index
  * @mid: mid of the array
- * @right: last index
+ * @high: last index
  * @tmp: temporary array
  */
 void merge_sorted_a(int *array, size_t low, size_t mid, size_t high, int *tmp)
