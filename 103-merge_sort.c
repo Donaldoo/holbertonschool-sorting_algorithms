@@ -19,7 +19,7 @@ void merge_sort_recursion(int *array, size_t left, size_t right, int *tmp)
 	merge_sort_recursion(array, left, mid, tmp);
 	merge_sort_recursion(array, mid, right, tmp);
 
-	merge_sorted_arrays(array, left, mid, right, tmp);
+	merge_sorted_a(array, left, mid, right, tmp);
 }
 
 /**
