@@ -13,7 +13,7 @@ void merge_sort_recursion(int *array, size_t left, size_t right, int *tmp)
 
 	if (array == NULL || tmp == NULL || right <= (left + 1))
 		return;
-	
+
 	mid = (left + right) / 2;
 
 	merge_sort_recursion(array, left, mid, tmp);
@@ -30,7 +30,7 @@ void merge_sort_recursion(int *array, size_t left, size_t right, int *tmp)
  * @right: last index
  * @tmp: temporary array
  */
-void merge_sorted_arrays(int *array, size_t low, size_t mid, size_t high, int *tmp)
+void merge_sorted_a(int *array, size_t low, size_t mid, size_t high, int *tmp)
 {
 	size_t i;
 	size_t left;
@@ -89,10 +89,10 @@ void print(int *array, size_t low, size_t high)
 void merge_sort(int *array, size_t size)
 {
 	int *tmp;
-	
+
 	if (array == NULL || size < 2)
 		return;
-	
+
 	tmp = malloc(sizeof(int) * size);
 	if (tmp == NULL)
 		return;

@@ -39,7 +39,7 @@ void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void merge_sort_recursion(int *array, size_t left, size_t right, int *tmp);
-void merge_sorted_arrays(int *array, size_t left, size_t mid, size_t right, int *tmp);
+void merge_sorted_a(int *array, size_t left, size_t mid, size_t right, int *tmp);
 void print(int *array, size_t low, size_t high);
 
 
