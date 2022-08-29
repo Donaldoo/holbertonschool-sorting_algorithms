@@ -1,9 +1,7 @@
 #include "sort.h"
 /**
- *
- *
- *
- *
+ * cocktail_sort_list - function that sorts the list as requested
+ * @list: list to be sorted
  */
 void cocktail_sort_list(listint_t **list)
 {
@@ -44,10 +42,9 @@ void cocktail_sort_list(listint_t **list)
 	}
 }
 /**
- *
- *
- *
- *
+ * swap_listint - function of swap
+ * @a: first intiger to be swapped
+ * @b: second intiger to be swapped
  */
 void swap_listint(listint_t *a, listint_t *b)
 {
@@ -61,10 +58,11 @@ void swap_listint(listint_t *a, listint_t *b)
 	b->next = a;
 }
 /**
- *
- *
- *
- *
+ * tail_traverse - traversing the list dow to the tail
+ * @head: head of the list
+ * @tail: tail of the list
+ * @list: list to be checked
+ * Return: index of the tail
  */
 listint_t *tail_traverse(listint_t *head, listint_t *tail, listint_t *list)
 {
